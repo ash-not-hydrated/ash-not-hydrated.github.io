@@ -1,7 +1,62 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Retro Chem Site</title>
+
+  <!-- Retro Pixel Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!-- Style -->
+  <style>
+    body {
+      background-color: black;
+      color: limegreen;
+      font-family: 'Press Start 2P', monospace;
+      text-align: center;
+      padding: 2em;
+    }
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      animation: scroll-left 10s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+
+  <!-- MathJax for LaTeX -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <!-- 3Dmol.js -->
+  <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <h1>Racemic Ramblings</h1>
+
+  <div class="marquee">🔥 Now featuring: LaTeX, molecules, and 90s flair! 🔥</div>
+
+  <p>Here’s some inline LaTeX: \( E = mc^2 \)</p>
+  <p>And a block equation:</p>
+  \[
+    \Delta G = \Delta H - T\Delta S
+  \]
+
+  <div id="molviewer" style="width: 400px; height: 400px; margin: auto;"></div>
+
+  <script>
+    let element = document.getElementById("molviewer");
+    let viewer = $3Dmol.createViewer(element, { backgroundColor: "black" });
+    viewer.addModel("c1ccccc1", "smi"); // benzene molecule
+    viewer.setStyle({}, { stick: {} });
+    viewer.zoomTo();
+    viewer.render();
+  </script>
 </body>
 </html>
